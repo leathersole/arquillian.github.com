@@ -6,10 +6,10 @@ guide_summary: Learn how to use JBoss Forge to get started faster with Arquillia
 guide_group: 1
 guide_order: 30
 ---
-This guide gets you acquainted with the Arquillian plugin for JBoss Forge. このガイドの読了後、以下のことができるようになります：
+このガイドでは、JBoss ForgeのArquillianプラグインについて解説します。このガイドを読むと、以下のことができるようになります：
 
 * Forge環境にArquillainプラグインをインストールする
-* Use the plugin to add the Arquillian infrastructure to a Maven-based Java Project
+* このプラグインを使って、MavenベースのJavaプロジェクトに、Arquillianインフラストラクチャを追加する
 * コンポーネントと、対応するArquillianのテストを生成する
 * 複数のコンテナで手動設定なしにArquillianテストを実行する
 
@@ -17,11 +17,11 @@ You'll be performing many of the same steps described in the "Getting Started":.
 
 h3. Assumptions
 
-This guide assumes you have "JBoss Forge":http://jboss.org/forge setup. Installing Forge is a relatively short process. Refer to the "Getting Started guide" or the "official Forge documentation":https://docs.jboss.org/author/display/FORGE/Home for download and installation instructions. You'll also need "JDK(Java Development Kit) 1.6":http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u29-download-513648.html or better installed on your machine.
+このガイドは、 "JBoss Forge":http://jboss.org/forge がセットアップ済みであると仮定しています。Forgeのインストールは、比較的短い手順です。ダウンロードやインストールの説明は、"Getting Started guide"や"official Forge documentation":https://docs.jboss.org/author/display/FORGE/Home を参照してください。また、 "JDK(Java Development Kit) 1.6":http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u29-download-513648.html 以降が必要です。
 
 h3. Create a Project
 
-Before we can get started with Arquillian we need a project. If you did not create one yet, use the following Forge commands to create a simple Java EE 6 project that includes JPA.
+Arquillianを始める前に、プロジェクトが必要です。まだ作成していなければ、以下のForgeのコマンドでJPAを含むシンプルなJava EE 6プロジェクトを作成してください。
 
 bc(command). $ new-project --named arquillian-demo --topLevelPackage demo
 
@@ -35,9 +35,9 @@ Wrote /Users/paul/arquillian-demo/src/main/resources
 Wrote /Users/paul/arquillian-demo/src/test/resources
 Wrote /Users/paul/arquillian-demo/src/main/resources/META-INF/forge.xml
 
-p. The new project is created. Next, we need to have some code to test. Let's use Forge to create a new CDI bean.
+p. 新しいプロジェクトが作成されました。次に、テスト対象のコードが必要です。Forgeを使って新しいCDI beanを作成しましょう。
 
-p. First, we will install CDI into our project using the "beans" plugin.
+p. まず、"beans"プラグインを使って、CDIをプロジェクトにインストールします。
 
 bc(command). $ beans setup
 
@@ -46,14 +46,14 @@ bc(output).. ***SUCCESS*** Installed [forge.spec.cdi] successfully.
 
 Wrote /Users/paul/arquillian-demo/src/main/resources/META-INF/beans.xml
 
-p. Then we will create a new bean.
+p. それから、新しいbeanをつくりましょう。
 
 bc(command). $ beans new-bean --type demo.MySimpleBean --scoped DEPENDENT
 
 bc(output). Picked up type <JavaResource>: demo.MySimpleBean
 Wrote /Users/paul/arquillian-demo/src/main/java/demo/MySimpleBean.java
 
-Your project is set up now. It's time for testing!
+プロジェクトはセットアップされました。テストの時間です！
 
 h3. Getting started 
 
