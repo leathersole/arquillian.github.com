@@ -17,7 +17,7 @@ You'll be performing many of the same steps described in the "Getting Started":.
 
 h3. Assumptions
 
-このガイドは、 "JBoss Forge":http://jboss.org/forge がセットアップ済みであると仮定しています。Forgeのインストールは、比較的短い手順です。ダウンロードやインストールの説明は、"Getting Started guide"や"official Forge documentation":https://docs.jboss.org/author/display/FORGE/Home を参照してください。また、 "JDK(Java Development Kit) 1.6":http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u29-download-513648.html 以降が必要です。
+このガイドは、 "JBoss Forge":http://jboss.org/forge がセットアップ済みであると仮定しています。Forgeのインストールは、比較的短い手順です。ダウンロードやインストールの説明は、"Getting Started guide"や "official Forge documentation":https://docs.jboss.org/author/display/FORGE/Home を参照してください。また、 "JDK(Java Development Kit) 1.6":http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u29-download-513648.html 以降が必要です。
 
 h3. Create a Project
 
@@ -57,6 +57,7 @@ Wrote /Users/paul/arquillian-demo/src/main/java/demo/MySimpleBean.java
 
 h3. Getting started 
 
+すでに "general getting started guide":../getting_started で見ているかもしれませんが、Arquillianのセットアップは簡単です。たくさんのコピー／ペースト作業ですが、pom.xmlにArquillianのための新しいコンテナを設定します。
 Setting up Arquillian is easy, as you might have seen in the "general getting started guide":../getting_started. It is a lot of copy/paste work however to configure a new container for Arquillian in the pom.xml. Forge can do that for you with a single command!
 
 First you will need to install the Arquillian plugin.
