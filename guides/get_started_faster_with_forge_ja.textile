@@ -2,7 +2,7 @@
 layout: guide
 title: Get Started Faster with Forge
 authors: ['Paul Bakker', 'Lincoln Baxter III']
-guide_summary: Learn how to use JBoss Forge to get started faster with Arquillian and work more efficiently as you develop tests.
+guide_summary: Arquillianをすぐに始められるように、またより効率よくテストを作成できるように、JBoss Forgeの使い方を学びます。
 guide_group: 1
 guide_order: 30
 ---
@@ -13,9 +13,9 @@ guide_order: 30
 * コンポーネントと、対応するArquillianのテストを生成する
 * 複数のコンテナで手動設定なしにArquillianテストを実行する
 
-You'll be performing many of the same steps described in the "Getting Started":../getting_started guide, only you'll be letting Forge handle the dirty work. We've designed this guide to be a fast read to get you started even quicker than ever before.
+読者は、 "Getting Started":../getting_started guide で説明されているたくさんの重複したステップを実行しているでしょう。それらの煩雑な作業はForgeに実行させます。このガイドは、これまでのガイドよりも、早く始められるよう、早く読めるように作成しました。
 
-h3. 前提事項
+h3. 前提
 
 このガイドは、 "JBoss Forge":http://jboss.org/forge がセットアップ済みであることが前提です。Forgeのインストールは、比較的短い手順です。ダウンロードやインストールの説明は、"Getting Started guide"や "official Forge documentation":https://docs.jboss.org/author/display/FORGE/Home を参照してください。また、 "JDK(Java Development Kit) 1.6":http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u29-download-513648.html 以降が必要です。
 
@@ -55,7 +55,7 @@ Wrote /Users/paul/arquillian-demo/src/main/java/demo/MySimpleBean.java
 
 プロジェクトはセットアップされました。テストの時間です！
 
-h3. スタートする
+h3. スタート
 
 すでに "general getting started guide":../getting_started で見ているかもしれませんが、Arquillianのセットアップは簡単です。pom.xmlにArquillianで使う新しいコンテナを設定するのは、たくさんのコピー／ペースト作業です。Forgeでやれば、一つのコマンドです！
 
