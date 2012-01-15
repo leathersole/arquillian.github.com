@@ -42,9 +42,9 @@ p. First, we will install CDI into our project using the "beans" plugin.
 bc(command). $ beans setup
 
 bc(output).. ***SUCCESS*** Installed [forge.spec.cdi] successfully.
- ? Do you want to install CDI APIs? [y/N]
-
+***SUCCESS*** Beans (CDI) is installed.
 Wrote /Users/paul/arquillian-demo/src/main/resources/META-INF/beans.xml
+Wrote /Users/paul/arquillian-demo/pom.xml
 
 p. Then we will create a new bean.
 
@@ -65,7 +65,7 @@ bc(command). $ forge install-plugin arquillian
 
 Now we need to set up Arquillian and a container configuration. Let's first try JBoss AS7
 
-bc(command). $ arquillian setup --container JBOSS_AS_7_MANAGED
+bc(command). $ arquillian setup --container JBOSS_AS_MANAGED_7.X
 
 Forge will prompt you which version of JUnit, Arquillian and JBoss AS7 to use. Use the latest final versions for each. Forge can even download JBoss AS7 automatically if you haven't done so yet.
 
