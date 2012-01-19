@@ -9,9 +9,9 @@ TODO: ["ポートの設定と、arquillian.launch", "予想されたデプロイ
 ---
 この "Getting Started":/guides/getting_started ガイドの続編では、少し複雑な例を通じて、Arquillianについて何を学んだかを確認できます。このガイドを読むと、以下のことができるようになります：
 
-* Write an Arquillian test that demonstrates CDI(Contexts and Dependency Injection) and EJB(Enterprise JavaBeans) working together
-* Execute an Arquillian test in a remote container (i.e., server)
-* Debug an Arquillian test inside the remote container
+* CDI(Contexts and Dependency Injection)とEJB(Enterprise JavaBeans)を含むArquillianのテストを書く
+* Arquillianテストをリモートのコンテナ(例、サーバー)で実行する
+* Arquillianのテストをリモートのコンテナ内でデバッグする
 
 You'll learn all of these skills by incorporating additional profiles to your build that, when activated, will cause Arquillian to run the tests in a remote container (i.e., server). That means you'll be testing the _real deal_. No mocks. No embedded runtimes! Since you've done most of the hard work in the first guide, it won't take long to get there.
 
