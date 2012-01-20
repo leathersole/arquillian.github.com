@@ -23,7 +23,7 @@ h3. コンポーネントを作成する
 
 このガイドでは、とても基本的なショッピング・アプリケーションのバックエンドを作成します。訪問者が選んだ品物を保存するためにbasketコンポーネントを使い、確定した注文を保存し読み出すためにorder repositoryコンポーネントを使います。ここでは、それぞれをCDIとEJBを使って実装します。すでにJava EE 6 APIがクラスパス上にあるので、すぐにこれら二つのプログラミングモデルを利用して始めることができます（このAPIをプロジェクトに導入する手順は、 "Getting Started":/guides/getting_started ガイドを参照してください）。
 
-オーダーを永続的なストレージとやりとりするコンポーネントから始めましょう。 Following good software design, and to simplify testing, we'll begin by defining an interface that defines the contract. In your IDE, create a new local EJB interface named @OrderRepository@ and populate it with the following contents:
+オーダーを永続的なストレージとやりとりするコンポーネントから始めましょう。よいソフトウェア設計に従い、またテストをシンプルにするために、契約を表すインターフェースの設計から始めます。IDEで、新しく @OrderRepository@ というローカルEJBインターフェースを作成し、以下のコンテンツを追加してください。
 
 div(filename). src/main/java/org/arquillian/example/OrderRepository.java
 
@@ -39,7 +39,7 @@ public interface OrderRepository {
     int getOrderCount();
 }
 
-p. Let's worry about the implementation a bit later. Instead, let's move on to how we are going to use this contract.
+p. 実装について気にするのは、ちょっと後にして、ここでは、この契約をどのように利用するか考えましょう。
 
 As visitors browse the site, they'll put items in their baskets to purchase. To model this scenario, we'll use a CDI bean that is associated with the visitor's HTTP session. This component will then delegate to the @OrderRepository@ EJB when the visitor wants to purchase the selected items.
 
