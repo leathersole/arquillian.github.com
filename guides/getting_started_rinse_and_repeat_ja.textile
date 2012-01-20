@@ -21,9 +21,9 @@ h3. 前提
 
 h3. コンポーネントを作成する
 
-In this guide, we'll be creating a very basic backend for a shopping application. We'll use a basket component to store the visitor's selected items and an order repository component to store and retrieve placed orders. We'll implement these components using CDI and EJB, respectively. We can immediately start using these two programming models since we already have the Java EE 6 API on the classpath. (Refer to the "Getting Started":/guides/getting_started guide for instructions on how to add this API to your project).
+このガイドでは、とても基本的なショッピング・アプリケーションのバックエンドを作成します。訪問者が選んだ品物を保存するためにbasketコンポーネントを使い、確定した注文を保存し読み出すためにorder repositoryコンポーネントを使います。ここでは、それぞれをCDIとEJBを使って実装します。すでにJava EE 6 APIがクラスパス上にあるので、すぐにこれら二つのプログラミングモデルを利用して始めることができます（このAPIをプロジェクトに導入する手順は、 "Getting Started":/guides/getting_started ガイドを参照してください）。
 
-Let's start with the component that moves the orders to and from permanent storage. Following good software design, and to simplify testing, we'll begin by defining an interface that defines the contract. In your IDE, create a new local EJB interface named @OrderRepository@ and populate it with the following contents:
+オーダーを永続的なストレージとやりとりするコンポーネントから始めましょう。 Following good software design, and to simplify testing, we'll begin by defining an interface that defines the contract. In your IDE, create a new local EJB interface named @OrderRepository@ and populate it with the following contents:
 
 div(filename). src/main/java/org/arquillian/example/OrderRepository.java
 
