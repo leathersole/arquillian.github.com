@@ -21,7 +21,7 @@ h3. 前提
 
 h3. コンポーネントを作成する
 
-このガイドでは、とても基本的なショッピング・アプリケーションのバックエンドを作成します。訪問者が選んだ品物を保存するためにbasketコンポーネントを使い、確定した注文を保存し読み出すためにorder repositoryコンポーネントを使います。ここでは、それぞれをCDIとEJBを使って実装します。すでにJava EE 6 APIがクラスパス上にあるので、すぐにこれら二つのプログラミングモデルを利用して始めることができます（このAPIをプロジェクトに導入する手順は、 "Getting Started":/guides/getting_started ガイドを参照してください）。
+このガイドでは、とても基本的なショッピングアプリケーションのバックエンドを作成します。訪問者が選んだ品物を保存するためにbasketコンポーネントを使い、確定した注文を保存し読み出すためにorder repositoryコンポーネントを使います。ここでは、それぞれをCDIとEJBを使って実装します。すでにJava EE 6 APIがクラスパス上にあるので、すぐにこれら二つのプログラミングモデルを利用して始めることができます（このAPIをプロジェクトに導入する手順は、 "Getting Started":/guides/getting_started ガイドを参照してください）。
 
 オーダーを永続的なストレージとやりとりするコンポーネントから始めましょう。よいソフトウェア設計に従い、またテストをシンプルにするために、契約を表すインターフェースの設計から始めます。IDEで、新しく @OrderRepository@ というローカルEJBインターフェースを作成し、以下のコンテンツを追加してください。
 
@@ -41,9 +41,9 @@ public interface OrderRepository {
 
 p. 実装について気にするのは、ちょっと後にして、ここでは、この契約をどのように利用するか考えましょう。
 
-As visitors browse the site, they'll put items in their baskets to purchase. To model this scenario, we'll use a CDI bean that is associated with the visitor's HTTP session. This component will then delegate to the @OrderRepository@ EJB when the visitor wants to purchase the selected items.
+訪問者がこのサイトを訪れたとき、買い物かごに品物を入れてから購入するでしょう。このシナリオをモデル化するために、訪問者のHTTPセッションに関連したCDI beanを使います。訪問者が選んだ品物を購入するときに、このコンポーネントは、 @OrderRepository@ EJBに移譲します。
 
-In your IDE, create a class named @Basket@ and assign it to the session context by adding the scope annotation @@SessionScoped@, as shown below:
+IDEで、 @Basket@ というクラスを作成し、次に示すように @@SessionScoped@ スコープアノテーションを追加して、セッションコンテキストに割り当ててください。
 
 div(filename). src/main/java/org/arquillian/example/Basket.java
 
@@ -89,13 +89,13 @@ public class Basket implements Serializable {
     }
 }
 
-p. As you can see, we are wiring EJB to a CDI bean, precisely the integration we want to test!
+p. ご覧のようにEJBをCDI beanに接合しました。まさにテストしたいと考えている結合です！
 
-h3. Implement in Phases
+h3. 段階的に実装する
 
-We aren't quite ready to write a test because we don't have an implementation of the @OrderRepository@. For the purpose of this example, let's assume that the @OrderRepository@ is being implemented by another team (or in another iteration). Here's where the micro-deployment feature of Arquillian really stands out. We can create an in-memory implementation as an EJB singleton and bundle it in the test archive to get a working application in the short term. (We may even decide to keep this implementation for the purpose of testing this boundary).
+まだまだテストを書く準備ができていません。それは @OrderRepository@ の実装がないからです。この例の目的のために、 @OrderRepository@ は、他のチーム（または別のイテレーション）の実装があると仮定しましょう。ここが、Arquillianのマイクロデプロイメント機能が本当に引き立つところです。EJBシングルトンとして、インメモリ実装を作成し、テストアーカイブにまとめて、動作するアプリケーションを短期間で手に入れることができます（この実装を、この境界でのテストのために残すと決めてしまうかもしれません）。
 
-Create the class @SingletonOrderRepository@ in your test classpath and populate it with the code shown below:
+@SingletonOrderRepository@ クラスをテストクラスパス内に作成し、以下のコードを追加してください。
 
 div(filename). src/test/java/org/arquillian/example/SingletonOrderRepository.java
 
@@ -137,11 +137,11 @@ public class SingletonOrderRepository implements OrderRepository {
     }
 }
 
-p. The added bonus of this implementation is that we get a chance to play around with the new singleton feature of EJB 3.1 in an Arquillian sandbox. That's why we like to say that Arquillian is a learning environment in addition to being a testing tool.
+p. この実装にはおまけが追加されており、それはArquillianのサンドボックスの中で、EJB 3.1の新しいシングルトン機能で遊んでみる機会です。そんなわけで、筆者は、Arquillianはテストツールに加えて学習環境である、と言っています。
 
-Now we are ready to write the Arquillian test.
+Arquillianテストを書く準備ができました。
 
-h3. Write a Test
+h3. テストを書く
 
 We are now going to write a test that simulates adding items to an instance of @Basket@, uses that instance to place an order and then validates that the order is processed and stored into the single @OrderRepository@ instance.
 
