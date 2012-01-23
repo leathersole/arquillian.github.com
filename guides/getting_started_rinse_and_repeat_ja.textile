@@ -143,11 +143,11 @@ Arquillianテストを書く準備ができました。
 
 h3. テストを書く
 
-We are now going to write a test that simulates adding items to an instance of @Basket@, uses that instance to place an order and then validates that the order is processed and stored into the single @OrderRepository@ instance.
+ここでは、 @Basket@ インスタンスへのアイテム追加を模倣し、そのインスタンスをあるオーダーに入れ、そのオーダーが処理され、一つの @OrderRepository@ インスタンスにストアされることを検証する テストを書こうとしています。
 
-p(info). %Of course, we will only be testing the in-memory implementation. You'll learn how to write a test that uses a database in the "Testing Java Persistence":/guides/testing_java_persistence guide.%
+p(info). %いうまでもなく、ここでは、ただメモリ上での実装をテストします。データベースを使うテストをどのように書くかは、 "Testing Java Persistence":/guides/testing_java_persistence ガイドで学びます。%
 
-Create the class @BasketTest@ and initialize it as an Arquillian test case:
+@BasketTest@ クラスを作成し、Arquillianテストケースとして初期化します：
 
 div(filename). src/test/java/org/arquillian/example/BasketTest.java
 
@@ -159,7 +159,7 @@ import org.jboss.arquillian.junit.Arquillian;
 public class BasketTest {
 }
 
-p. Next, we'll define a test archive that includes the basket, the order repository interface and its singleton implementation. We also need an empty beans.xml file to active CDI (EJB is automatically activated). Notice how we have complete control over the classpath by explicitly defining what goes into the archive.
+p. 次に、basket、order repositoryインターフェースとそのシングルトン実装を含むテストアーカイブを定義します。また、CDIを有効にするため、空のbeans.xmlが必要です（EJBは自動的に有効化されます）。アーカイブに何を入れるかを厳密に定義することにより、いかに完全なコントールができているか、ということに注目してください。
 
 div(filename). src/test/java/org/arquillian/example/BasketTest.java
 
