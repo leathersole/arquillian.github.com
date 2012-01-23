@@ -159,7 +159,7 @@ import org.jboss.arquillian.junit.Arquillian;
 public class BasketTest {
 }
 
-p. 次に、basket、order repositoryインターフェースとそのシングルトン実装を含むテストアーカイブを定義します。また、CDIを有効にするため、空のbeans.xmlが必要です（EJBは自動的に有効化されます）。アーカイブに何を入れるかを厳密に定義することにより、いかに完全なコントールができているか、ということに注目してください。
+p. 次に、basket、order repositoryインターフェースとそのシングルトン実装を含むテストアーカイブを定義します。また、CDIを有効にするため、空のbeans.xmlが必要です（EJBは自動的に有効化されます）。アーカイブに何を入れるかを厳密に定義することにより、いかにクラスパス以上に完全なコントールができているか、ということに注目してください。
 
 div(filename). src/test/java/org/arquillian/example/BasketTest.java
 
@@ -181,7 +181,7 @@ public class BasketTest {
     }
 }
 
-p. All that's left is to inject the basket and order repository into the test case and test their interaction. We'll be injecting the EJB interface, not the implementation. The EJB container will automatically find the implementation of the interface to use.
+p. 残りは、basketとorder repositoryを注入することと、それらのインタラクションをテストすることです。EJBは、実装ではなくインターフェースを注入します。EJBコンテナは、自動的にそのインターフェースで使用するEJB実装を見つけます。
 
 div(filename). src/test/java/org/arquillian/example/BasketTest.java
 
@@ -235,25 +235,25 @@ public class BasketTest {
     }
 }
 
-p. The test is written. Now we need to get setup to run it.
+p. テストを書きました。次に実行するためにセットアップしなければなりません。
 
-h3. Add the Remote Containers
+h3. リモートコンテナを追加する
 
-The test we've written uses both CDI and EJB. That combination pushes the boundaries of what an embedded runtime (like Weld Embedded or OpenEJB Embedded) can provide. While possible, it's just simpler to use a compliant Java EE container. Plus, it gives us more accurate test results. So we'll leave the Weld Embedded container behind for now.
+このテストでは、CDIとEJBの両方を使用します。この組み合わせは、組み込みランタイム（たとえばWeld EmbeddedやOpenEJB Embedded）の限界を押し上げます。可能であったとしても、単純にJava EEコンテナを利用する方がシンプルです。それに加えて、より正確なテスト結果を得られます。それで、この後はWeld Embeddedコンテナから離れましょう。
 
-In the previous guide, we used both embedded and managed containers. In both cases, Arquillian must start the container when the test suite begins and stop it when the tests are finished. What if you already have a container started (or you are willing to start one for the purpose of testing)? That's obviously going to be the fastest way to run the tests. Even if the container starts very fast, nothing beats no startup at all. That's the purpose of the remote containers.
+前のガイドで、embeddedとmanagedの両方のコンテナを使いました。両方のケースで、Arquillianは、テストスイート開始時にコンテナをスタートし、テストが終了すると停止しなければなりません。コンテナをすでにスタートしていた場合（あるいはテストのために起動したい場合）はどうでしょう？ これは、明らかにテストの実行には最速です。コンテナの起動が非常に速いとしても、セットアップが不要な場合にはかないません。これがリモートコンテナの目的です。
 
-Remote containers provide an ideal development environment for integration testing. You'll also discover that they also make debugging the test very straightforward. And since there is no reference to the container in the test, using a remote container during development does not prevent you from using a managed container for continous integration.
+リモートコンテナは、統合テストにおいて理想的な開発環境を提供します。また、とても直感的にデバッグができることに気づくでしょう。そして、テストにおいてコンテナへの参照がないので、開発時にリモートコンテナを使うと、継続的結合においてマネージドコンテナを利用する際に邪魔になりません。
 
-p(warning). %The term remote refers to a separate process, not necessarily a separate machine, though it can accomodate that setup.%
+p(warning). %リモートという用語は、異なるプロセスを意味します。他のマシンでも設定できますが、必ずしもその必要はありません。%
 
-A remote container is a standalone process to which Arquillian deploys using the container's client deployment APIs. Therefore, the libraries you need are:
+リモートコンテナは独立したプロセスで、Arquillianは、そのコンテナのクライアントのデプロイメントAPIを使用します。従って必要なライブラリは：
 
-* APIs of the programming model (only need to be packaged if the container does not provide them)
-* The Arquillian remote container adapter
-* The client deployment APIs for communicating with the container process
+* プログラミングモデルのAPI（コンテナが提供しない場合に限り、パッケージ化するために必要です）
+* Arquillianリモートコンテナアダプター
+* コンテナプロセスと通信するためのクライアントデプロイメントAPI
 
-In your Maven pom.xml file, add two new profiles under the @<profiles>@ element. The first profile uses a remote JBoss AS 7 container:
+Mavenのpom.xmlファイルの @<profiles>@ 要素の下に、新しいプロファイルを2つ加えてください。最初のプロファイルは、リモートのJBoss AS 7コンテナを使用します：
 
 div(filename). pom.xml
 
@@ -278,7 +278,7 @@ bc(prettify).. <!-- clip -->
 </profile>
 <!-- clip -->
 
-p. The second profile uses a remote GlassFish 3.1 container:
+p. 二番目のプロファイルは、リモートのGlassFish 3.1コンテナを使用します：
 
 div(filename). pom.xml
 
