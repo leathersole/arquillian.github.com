@@ -423,21 +423,21 @@ GlassFish上でテストを実効するには、GlassFishコンテナの起動�
 
 h3. Arquillianテストのデバッグ
 
-Debugging a test in a remote container? That seems hard. Surprise! It's not at all. You only have to modifiy one of the step above and add one additional step:
+リモートコンテナでテストをデバッグする？それは難しそうだ。そんなことはありません！上のステップを一つ変更し、一つ追加するだけです：
 
-# *Debug* the remote container
-# Activate the Maven profile that adds the cooresponding container adapter to the classpath
-# *Set a breakpoint*
-# Run the test
+# リモートコンテナを *デバッグ* する
+# Mavenプロファイルを有効化し、対応するコンテナアダプタをクラスパスに追加する
+# *ブレークポイントを設定する*
+# テスト実行
 
-In the Servers view, you should notice that there is a bug icon right next to the green play button. Click this button to start one of the servers in debug mode. Eclipse automatically connects its debugger to the container.
+サーバービューには、緑のプレイボタンの左にデバッグアイコンがあります。このボタンをクリックすると、デバッグモードでサーバーが起動します。Eclipseは自動的にそのコンテナにデバッガを接続します。
 
-Set a breakpoint in the @addOrder()@ method on the @SingletonOrderRepository@ bean. Now, run the test again by right clicking and selecting Run As > JUnit Test.
+@SingletonOrderRepository@ beanの @addOrder()@ メソッドにブレークポイントを設定します。ここでまた右クリックとRun As > JUnit Testを選択し、テストを実行します。
 
-p(warning). %You don't need to use Debug As > JUnit Test since all the test code is running inside the container, which is already being debugged.%
+p(warning). %Debug As > JUnitテストを使用する必要はありません。すべてのテストは、コンテナ上で実行されていて、すでにデバッグされているからです。%
 
-The test should halt at the breakpoint. If you are using JBoss AS, you can open the administration console and verify that the test application is currently deployed to the server. If you browse the stack trace in the Eclipse Debug view, you'll notice that the server is being controlled over a remote protocol (either JMX or Servlet) and that JUnit is being launched from inside the container.
+テストは、ブレークポイントで中断されます。JBoss ASであれば、管理コンソールを開き、テストアプリケーションがサーバーにデプロイされていることを確認できます。Eclipseのデバッグビューでスタックトレースを見れば、サーバーはリモートプロトコル（JMXやサーブレット）から制御されていて、JUnitはコンテナ内で実行されていることがわかるでしょう。
 
 !/images/guides/arquillian_tutorial_2_debug_remote_test.png!
 
-You are now poking around the server from the comfort of your IDE.
+これで、サーバーを快適なIDEからつつきまわせるようになりました。
