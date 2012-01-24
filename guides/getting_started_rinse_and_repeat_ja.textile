@@ -373,26 +373,26 @@ h3. Arquillianテストの実行
 Arquillianテストを実行させるには、3つのステップを実行してください。
 
 # リモートコンテナを起動する
-# Mavenプロファイルを有効化し、対応するActivate the Maven profile that adds the cooresponding container adapter to the classpath
-# Run the test
+# Mavenプロファイルを有効化し、対応するコンテナアダプタをクラスパスに追加する
+# テスト実行
 
-Let's start by using JBoss AS 7.
+JBoss AS 7で実行してみましょう
 
-h4. Run the Test on JBoss AS
+h4. JBoss AS上でテストを実行する
 
-To run the test on JBoss AS, begin by starting the JBoss AS container. Open the Servers view, select JBoss AS 7, then click the green play button. Wait for it to start (it shouldn't take long).
+JBoss AS上でテストを実行するには、まずJBoss ASコンテナを起動します。サーバービューを開き、JBoss AS 7を選択し、緑のプレイボタンをクリックして、開始を待ちます（さほどかからないはずです）。
 
-Once that's up and running, activate the @arquillian-jbossas-remote@ Maven profile using either the Maven properties tab or the JBoss Tools Maven profile selector. The profile editor below shows the correct selection.
+起動したら、Mavenプロパティタブか、JBoss Tools Maven profile selectorで、 @arquillian-jbossas-remote@ Mavenプロファイルを有効化します。下のプロファイルエディタは正しいプロファイルを選択したところです。
 
 !/images/guides/arquillian_tutorial_2_jbossas_profile_selection.png!
 
-Finally, right click on the @BasketTest@ class and select Run As > JUnit Test. You should see a flurry of activity in the Console view and a successful result in the JUnit view.
+最後に、 @BasketTest@ を右クリックし、Run As > JUnit Testを選択します。コンソールビューでは、実行状況が流れ、成功との結果が、JUnitビューに表示されます。
 
-You can also run the test on the commandline using Maven:
+コマンドラインから、Mavenでテストを実行することもできます：
 
 bc(command). $ mvn test -Parquillian-jbossas-remote -Dtest=BasketTest
 
-You should see the following lines printed to the console:
+コンソールに以下のように表示されるでしょう：
 
 bc(output). -------------------------------------------------------
 T E S T S
@@ -401,27 +401,27 @@ Running org.arquillian.example.BasketTest
 ...
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.464 sec
 
-*Congratulations!* You've earned your first *(greenbar)green bar* with Arquillian using a remote container.
+*おめでとう！* リモートコンテナを使ったArquillianの最初の *(greenbar)グリーンバー* が表示されました。
 
-p(info). %You can also inject the EJB using @@Inject@ rather than @@EJB@. Give it a try!%
+p(info). %EJBを @@EJB@ ではなく、 @@Inject@ でインジェクトすることもできます。試してみましょう！%
 
-If you want to verify that the singleton is actually doing its job, go ahead and remove the @@Singleton@ annotation from the @SingletonOrderRepository@ class. You should see an assertion error when you run the test. Restore it and you'll be back to green.
+もし、シングルトンが実際に仕事をしているか検証したい場合は、 @SingletonOrderRepository@ クラスから、 @@Singleton@ アノテーションを削除して実行してください。テストでは、アサーションエラーが表示されるでしょう。元に戻すと、グリーンに戻ります。
 
-Now let's test the exact same test on GlassFish 3.1. Since we are done with JBoss AS for the moment, use the Servers view to stop the server.
+GlassFish 3.1上で、全く同じテストをしましょう。JBoss ASでのテストは済んだので、サーバービューでサーバーを終了します。
 
-h4. Run the Test on GlassFish
+h4. GlassFish上でテストを実行する
 
-To run the test on GlassFish, begin by starting the GlassFish container. Open the Servers view, select GlassFish 3.1, then click the green play button. Wait for it to start.
+GlassFish上でテストを実効するには、GlassFishコンテナの起動から始めます。サーバービューを開き、GlassFish 3.1を選択し、緑のプレイアイコンをクリックして、開始を待ちます。
 
-Once that's up and running, activate the @arquillian-glassfish-remote@ Maven profile using either the Maven properties tab or the JBoss Tools Maven profile selector. Remember to deactivate the @arquillian-jbossas-remote@ profile. The profile editor below shows the correct selection.
+起動したら、Mavenプロパティタブか、JBoss Tools Maven profile selectorで、 @arquillian-glassfish-remote@ Mavenプロファイルを有効化します。 @arquillian-jbossas-remote@ プロファイルの無効化を忘れないでください。以下のプロファイルエディタは正しいプロファイルを選択したところです。
 
 !/images/guides/arquillian_tutorial_2_glassfish_profile_selection.png!
 
-Finally, right click on the @BasketTest@ class and select Run As > JUnit Test. You should see a flurry of activity in the Console view and a successful result in the JUnit view.
+最後に、 @BasketTest@ を右クリックし、Run As > JUnit Testを選択します。コンソールビューでは、実行状況が流れ、成功との結果が、JUnitビューに表示されます。
 
-*Congratulations!* You've earned another *(greenbar)green bar*.
+*おめでとう！* 二つめの *(greenbar)グリーンバー* です！
 
-h3. Debug the Arquillian Test
+h3. Arquillianテストのデバッグ
 
 Debugging a test in a remote container? That seems hard. Surprise! It's not at all. You only have to modifiy one of the step above and add one additional step:
 
