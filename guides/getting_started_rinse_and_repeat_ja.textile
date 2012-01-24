@@ -333,20 +333,20 @@ bc(prettify).. <!-- clip -->
 </profile>
 <!-- clip -->
 
-p(info). %The remote GlassFish adapter uses Jersey to communicate with the container via JAX-RS (REST) and thus requires these additional libraries. The Weld API is required for unmarshalling exceptions returned by the container process.%
+p(info). %リモートGlassFishアダプタは、コンテナとのJAX-RS(REST)を介した通信にJerseyを使っているため、追加のライブラリが必要になります。Weld APIは、コンテナプロセスから返される例外のアンマーシャリングが必要です。%
 
-Once you've added the profiles to the pom.xml, right click on the project in Eclipse and select Maven > Update Project Configuration. If the project is showing compiler errors, you need to activate one of the profiles.
+pom.xmlにプロファイルを追加してしまえば、Eclipseでプロジェクトを右クリックして、Maven > Update Project Configrationを選択します。もしプロジェクトでコンパイルエラーが表示されたら、プロファイルのどれかを有効化してください。
 
-Recall that there are two ways to activate a Maven profile in Eclipse:
+EclipseでMavenプロファイルを有効化する方法は2つあることを思い出してください：
 
-# Manual configuration (standard approach)
+# 手動で設定（標準的なやり方）
 # Maven profile selector (JBoss Tools)
 
-Refer to the "Getting Started":/guides/getting_started#test_across_containers for instructions on how to activate a profile. Once you've activate the profile, the project should compile cleanly.
+プロファイルを有効化する方法は、 "Getting Started":/guides/getting_started#test_across_containers を参照してください。一度有効化すれば、プロジェクトはきれいにコンパイルできるはずです。
 
-Arquillian is expecting the container to be running. Therefore, let's get them setup so that we can start them from the comfort of the IDE right before we run the test.
+Arquillianは、コンテナが起動していると期待しています。従って、テストを実行する前に便利なIDEから起動できるように設定しましょう。
 
-h3. Control the Servers
+h3. サーバーを制御する。
 
 The easiest way to manage the remote containers is to set them up in your IDE. If you're a more of a commandline person, you can skip this step and start the servers using the appropriate startup scripts.
 
