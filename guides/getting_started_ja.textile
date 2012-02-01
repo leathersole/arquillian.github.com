@@ -49,12 +49,12 @@ p(info). %既存のMavenプロジェクトがあれば、この章を、次章�
 
 h4(#generate_project_from_archetype). Maven Archetypeからプロジェクトを生成する
 
-First, create a Maven-based Java project using the command below. _Copy the text after the @$@ and paste it into your command shell._
+まず、以下のコマンドでMavenベースのJavaプロジェクトを生成します。 _@$@ 以降のテキストをコピーして、コマンドシェルにペーストしてください。_
 
 bc(command).. $ mvn archetype:generate -DarchetypeGroupId=net.avh4.mvn.archetype \
 -DarchetypeArtifactId=java-1.6-archetype
 
-p. Respond to the prompts by entering the value shown after each double colon below. Hit the Enter key after each line (as indicated by @<ENTER>@).
+p. プロンプトでは、それぞれ、コロン2つの後に示している値を入力してください。（ @<ENTER>@ で示しているように）各行でエンターキーを押してください。
 
 bc(output). Define value for property 'groupId': : org.arquillian.example <ENTER>
 Define value for property 'artifactId': : arquillian-tutorial <ENTER>
@@ -67,16 +67,16 @@ version: 1.0-SNAPSHOT
 package: org.arquillian.example
 Y: : <ENTER>
 
-p. This command generated a Maven-based Java project inside a new folder named @arquillian-tutorial@ under the current directory. The file structure of the project is shown below:
+p. このコマンドは、カレントディレクトリに @arquillian-tutorial@ という新しいフォルダを作り、そこにMavenベースのJavaプロジェクトを生成します。このプロジェクトのファイル構成は、次のようになります：
 
 (filetree)* src/
 ** main/
-*** java/ - Place all application Java source files here (under Java package)
-*** resources/ - Place all application configuration files here
+*** java/ - アプリケーションのすべてのJavaソースファイルをここに置きます。（Javaパッケージの下に置きます）
+*** resources/ - アプリケーションの設定ファイルをここに置きます。
 ** test/
-*** java/ - Place all test Java source files heres (under Java package)
-*** resources/ - Place all test configuration files here (e.g., arquillian.xml)
-* pom.xml - The Maven build file. Tells Maven how your project should be built.
+*** java/ - すべてのテスト用のJavaソースコードをここに置きます。（Javaパッケージの下に置きます）
+*** resources/ - すべてのテスト用の設定ファイルをここに置きます。（例：arquillian.xml）
+* pom.xml - Mavenのビルドファイルです。Mavenでどのようにプロジェクトをビルドするか定義します。
 
 p(info). %The project is preconfigured to use Java 6 and JUnit 4.8, the minimum required versions of Java and JUnit for using Arquillian, respectively.%
 
