@@ -2,8 +2,9 @@
 layout: guide
 title: Getting Started
 authors: ['Dan Allen']
+translators: ['Takayuki Konishi']
 tags: [cdi, weld, maven, forge, eclipse]
-guide_summary: Learn how to add Arquillian to the test suite of your project and write your first Arquillian test.
+guide_summary: プロジェクトのテストスイートへArquillianを追加し、最初のArquillianテストの書き方を学びます。
 guide_group: 1
 guide_order: 10
 TODO: ["Explain how to debug w/ JBoss AS managed"]
@@ -19,11 +20,11 @@ TODO: ["Explain how to debug w/ JBoss AS managed"]
 [shrinkwrap_home]http://jboss.org/shrinkwrap
 [m2e_home]http://eclipse.org/m2e
 
-This guide introduces you to Arquillian. After reading this guide, you'll be able to:
+このガイドではArquillianを紹介します。このガイドを読むと、以下のことができるようになります：
 
-* Add the Arquillian infrastructure to a Maven-based Java project
-* Write an Arquillian test case to assert the behavior of a CDI(Contexts and Dependency Injection) bean
-* Execute the Arquillian test case in multiple compatible containers
+* MavenベースのJavaプロジェクトに、Arquillianインフラストラクチャを追加する
+* CDI(Contexts and Dependency Injection) beanの振る舞いを検証するArquillianのテストケースを書く
+* 複数の互換性のあるコンテナでArquillianのテストケースを実行する
 
 You'll learn all of these skills by incorporating Arquillian into the test suite of a Java EE application with a Maven build. We've designed this guide to be a _fast read_ to get you started quickly!
 
