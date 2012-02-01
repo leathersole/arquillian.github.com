@@ -26,28 +26,28 @@ TODO: ["Explain how to debug w/ JBoss AS managed"]
 * CDI(Contexts and Dependency Injection) beanの振る舞いを検証するArquillianのテストケースを書く
 * 複数の互換性のあるコンテナでArquillianのテストケースを実行する
 
-You'll learn all of these skills by incorporating Arquillian into the test suite of a Java EE application with a Maven build. We've designed this guide to be a _fast read_ to get you started quickly!
+これらのスキルを、ArquillianをJava EEアプリケーションのテストスイートとMavenのビルドに組み込むことで学びます。このガイドは、読者がさっと始められるように、 _速く読めるよう_ デザインされています！
 
-h3. Assumptions
+h3. 前提
 
-The easiest way to get started with Arquillian is to incorporate it into the test suite of a project build that offers dependency management. Today, the most widely used build tool in this category is "Apache Maven":maven_home. This guide will navigate you to your first *(greenbar)green bar* using a sample Maven project.
+Arquillianを始める最も簡単なやり方は、依存性の管理をしているプロジェクトのテストスイートに組み込むことです。今日、このカテゴリで最も広く利用されているビルドツールは、 "Apache Maven":maven_home です。このガイドでは、サンプルのMavenプロジェクトを使って、最初の *(greenbar)グリーンバー* へ案内します。
 
-p(info). %Arquillian does not depend on Maven, or any specific build tool for that matter. It works just as well--if not better--when used in a project with an Ant or Gradle build. Ideally, the build tool should offer dependency management as it simplifies the task of including the Arquillian libraries since they are distributed in the "Maven Central repository":maven_search%
+p(info). %ArquillianはMavenには、もっと言えばどんな特定のビルドツールにも依存しません。それはAntやGradleでビルドするプロジェクトで使っても --より優れているとは言わないまでも-- 同じように機能します。理想的には、ビルドツールは、 "Maven Central repository":maven_search で配布されているArquillianライブラリをプロジェクトに追加するタスクを単純化できる、依存性管理を提供している物がいいでしょう。%
 
-This guide assumes you have Maven available, either in your command shell or your IDE(Integrated Development Environment). If you don't, please "install Maven now":maven_download. You'll also need "JDK(Java Development Kit) 1.6":jdk_download or better installed on your machine.
+このガイドは、読者がコマンドシェルとIDE(Integrated Development Environment:統合開発環境)からMavenを利用できると仮定しています。もしそうでなければ、 "Mavenをインストールしてください":maven_download 。 また、 "JDK(Java Development Kit) 1.6":jdk_download 以降のインストールが必要です。
 
-h3. Create a New Project
+h3. 新しいプロジェクトを作成する
 
-There are two ways we recommend you create a new Maven project:
+新しいプロジェクトを作成する際に、お勧めの方法が２つあります：
 
-# "Generate a project from a Maven archetype":#generate_project_from_archetype
-# "Create and customize a project using JBoss Forge":#create_project_using_forge
+# "Maven archetypeからプロジェクトを生成する":#generate_project_from_archetype
+# "JBoss Forgeでプロジェクトを作成、カスタマイズする":#create_project_using_forge
 
-p(info). %If you already have a Maven project, you can use this section as review to ensure you have the proper dependencies before moving on.%
+p(info). %既存のMavenプロジェクトがあれば、この章を、次章に進む前に正しい依存性の設定になっているかのレビューとして使うことができます。%
 
-By far, "JBoss Forge":forge_home is the simpler approach, but this guide will offer both options in the event you aren't ready to adopt JBoss Forge. Select from one of the two options above to jump to the instructions.
+間違いなく、 "JBoss Forge":forge_home はより簡単なやり方ですが、このガイドではJBoss Forgeをまだ受け入れられないことを考慮して、両方のオプションを示します。上で示した二つのオプションからどちらかを選んで、次の説明に飛んでください。
 
-h4(#generate_project_from_archetype). Generate a Project from a Maven Archetype
+h4(#generate_project_from_archetype). Maven Archetypeからプロジェクトを生成する
 
 First, create a Maven-based Java project using the command below. _Copy the text after the @$@ and paste it into your command shell._
 
