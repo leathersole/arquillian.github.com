@@ -124,7 +124,7 @@ bc(prettify).. <project xmlns="http://maven.apache.org/POM/4.0.0"
     </dependencies>
 </project>
 
-p. We're going to be writing Java EE 6 components. Therefore, we also need to add the Java EE 6 API to the classpath so we can compile these components.
+p. これからJava EE 6コンポーネントを書きます。そのため、Java EE 6 APIをクラスパスに追加する必要があります。そうすれば、これらのコンポーネントをコンパイルできます。
 
 Open up the @pom.xml@ file once again and add the following XML fragment directly inside the @<dependencies>@ element. Here's how the section should look once you're done:
 
