@@ -126,7 +126,7 @@ bc(prettify).. <project xmlns="http://maven.apache.org/POM/4.0.0"
 
 p. これからJava EE 6コンポーネントを書きます。そのため、Java EE 6 APIをクラスパスに追加する必要があります。そうすれば、これらのコンポーネントをコンパイルできます。
 
-Open up the @pom.xml@ file once again and add the following XML fragment directly inside the @<dependencies>@ element. Here's how the section should look once you're done:
+@pom.xml@ ファイルをもう一度開き、そのXMLフラグメントを @<dependencies>@ 要素の下に追加してください。追加後は、以下のようになります：
 
 div(filename). pom.xml
 
@@ -148,28 +148,28 @@ bc(prettify).. <!-- clip -->
 </dependencies>
 <!-- clip -->
 
-p(important). %We strongly recommend that you *do not use* the Java EE API artifact with coordinates @javax:javaee-api@. That bundle contains classes with stripped method bodies, which will cause your application to throw strange Absent Code errors if left on the classpath at runtime (even when running tests). "Read this FAQ":http://community.jboss.org/wiki/WhatsTheCauseOfThisExceptionJavalangClassFormatErrorAbsentCode if you want more background.%
+p(important). %Java EE APIアーティファクトを、 @javax:javaee-api@ と組み合わせて *使わない* ことを強くおすすめします。このバンドルは、メソッドの実装を省いたクラスが含まれているので、実行時に（テストの実行時でも）これがクラスパスに残っていた場合、アプリケーションは奇妙なAbsent Codeエラーを投げます。もっと背景を知りたい場合は、 "このFAQを読んでください":http://community.jboss.org/wiki/WhatsTheCauseOfThisExceptionJavalangClassFormatErrorAbsentCode 。%
 
-p. The foundation of your project is now ready! Skip to the next section to "open the project in Eclipse":#open_project_in_eclipse so we can start writing some code!
+p. プロジェクトの基本は準備できました！"プロジェクトをEclipseで開く":#open_project_in_eclipse に進んでください。コードを書きはじめます！
 
-h4(#create_project_using_forge). Create a Project Using Forge
+h4(#create_project_using_forge). Forgeでプロジェクトを生成する
 
-"JBoss Forge":forge_home is a command shell for rapid-application development in a standards-based environment. Another way to think of it is that it's like Maven Archetypes on steroids.
+"JBoss Forge":forge_home は、標準ベースの環境で高速アプリケーション開発をするためのコマンドシェルです。別の見方をすれば、ドーピングしたMaven Archetypeのようなものです。
 
-Installing Forge is a relatively short process, and this guide will take you through the fundamentals. Follow these simple steps to get it installed:
+Forgeのインストールは、比較的短い手順であり、このガイドでは、基礎を体験します。以下の、簡単なステップに従ってインストールしてください：
 
-# "Download Forge":forge_download and unzip it into a folder on your harddrive, which we'll call @$FORGE_HOME@
-  We'll assume you extracted the distribution to a folder named @forge@ in your home directory
-# Add @$FORGE_HOME/bin@ to your path (Windows, Linux or Mac OSX)
+# "Forgeをダウンロード":forge_download し、ディスクに展開します。展開したフォルダを @$FORGE_HOME@ と呼びます。
+  ホームディレクトリの @forge@ というフォルダに配布物を展開したと仮定します。
+# @$FORGE_HOME/bin@ を（WindowsやLinux、Mac OSXの）パスに追加します。
 
-On Unix based operating systems, adding Forge to your path typically means editing your $HOME/.bashrc or $HOME/.profile; you will need to set the following environment variables:
+Unixベースのオペレーティングシステムでは、Forgeをパスに追加するというのは、一般的には、ユーザの$HOME/.bashrcまたは、$HOME/.profileを編集することになります。以下の環境変数をセットしてください：
 
 bc(command). $ export FORGE_HOME=$HOME/forge/
 $ export PATH=$PATH:$FORGE_HOME/bin
 
-p(info). %On Windows, you'll need to right-click on open the "Control Panel", then click "System Properties", open the "Advanced" tab, then click "Environment Variables" and add these two entries visually. We recommended setting User variables for Forge, unless you have placed the unzipped distribution in a folder where all users can access it.%
+p(info). %Windowsでは、“コントロールパネル”を開き、右クリックして“システムのプロパティ”をクリックします。“詳細設定”タブを開き、“環境変数”をクリックします。そして、これらの二つのエントリを追加します。展開した配布物をすべてのユーザーがアクセスできる場所に置いていない限り、ユーザー変数にForgeを設定することをおすすめします。%
 
-Now that Forge is installed (i.e., extracted), open a command prompt (a shell) and run the @forge@ command:
+これでForgeがインストール（つまり、展開）されたので、コマンドプロンプト（シェル）を開き、 @forge@ コマンドを実行してください：
 
 bc(command).. $ forge
    _____                    
@@ -181,28 +181,28 @@ bc(command).. $ forge
  
 [no project] ~ $
 
-p. That's it! You've got Forge up and running. Now it's time to create the project.
+p. これだけです！Forgeが起動しました。さあ、プロジェクトを作る時です。
 
-Inside the Forge shell, execute the following command to create a blank project, much like we created a project using the Maven Archetype above:
+Forgeシェル上で、新しいプロジェクトを生成するために、以下のコマンドを実行してください。これは、上で、Maven Archetypeで作成したプロジェクトとそっくりです：
 
 bc(command). $ new-project --named arquillian-tutorial --topLevelPackage org.arquillian.example
 
-p. This command generates a Maven-based Java project inside a new folder named @arquillian-tutorial@ under the current directory.
+p. このコマンドは、 @arquillian-tutorial@ という MavenベースのJavaプロジェクトをカレントディレクトリの新規フォルダの下に生成します。
 
-The file structure of the project Forge generates is shown below:
+Forgeが生成したこのプロジェクトのファイル構成を以下に示します：
 
 (filetree)* src/
 ** main/
-*** java/ - Place all application Java source files here (under Java package)
-*** resources/ - Place all application configuration files here
+*** java/ - アプリケーションのすべてのJavaソースファイルをここに置きます。（Javaパッケージの下に置きます）
+*** resources/ - アプリケーションの設定ファイルをここに置きます。
 **** META-INF/
-***** forge.xml - An empty Forge settings file
+***** forge.xml - 空のForge設定ファイルです。
 ** test/
-*** java/ - Place all test Java source files heres (under Java package)
-*** resources/ - Place all test configuration files here (e.g., arquillian.xml)
-* pom.xml - The Maven build file. Tells Maven how your project should be built.
+*** java/ - すべてのテスト用のJavaソースコードをここに置きます。（Javaパッケージの下に置きます）
+*** resources/ - すべてのテスト用の設定ファイルをここに置きます。（例：arquillian.xml）
+* pom.xml - Mavenのビルドファイルです。Mavenでどのようにプロジェクトをビルドするか定義します。
 
-Forge also makes the project folder your current directory within the Forge shell.
+また、ForgeはプロジェクトフォルダをForgeシェルでカレントディレクトリにします。
 
 bc(command). [arquillian-tutorial] arquillian-tutorial $ 
 
