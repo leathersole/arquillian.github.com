@@ -383,7 +383,7 @@ Arquillianテストは、すこし余分な部分のある、単なるユニッ�
 
 p(warning). %もし"Project configuration is out of date with pom.xml"というメッセージが表示されたら、プロジェクトを再同期するために右クリックしてProject > Maven > Update Project Configurationを選択してください.%
 
-Begin by creating a new JUnit test case in src/test/java under the @org.arquillian.example@ package and name it @GreeterTest@. You won't need the typical setup and teardown methods since Arquillian is doing most of the heavy lifting. Here's what we have so far:
+src/test/javaにて、 @org.arquillian.example@ パッケージ以下に @GreeterTest@ という新しいJUnitテストケースを作成することから始めます。力仕事はほとんどArquillianがやるので、典型的なsetupとteardownメソッドは不要です。今のところ、次のようになります：
 
 div(filename). src/test/java/org/arquillian/example/GreeterTest.java
 
