@@ -202,21 +202,21 @@ Forgeが生成したこのプロジェクトのファイル構成を以下に示
 *** resources/ - すべてのテスト用の設定ファイルをここに置きます。（例：arquillian.xml）
 * pom.xml - Mavenのビルドファイルです。Mavenでどのようにプロジェクトをビルドするか定義します。
 
-また、ForgeはプロジェクトフォルダをForgeシェルでカレントディレクトリにします。
+また、ForgeはプロジェクトフォルダをForgeシェルのカレントディレクトリにします。
 
 bc(command). [arquillian-tutorial] arquillian-tutorial $ 
 
-By default, Forge sets up the project to use Java 1.6, the minimum required version of Java to use Arquillian, a nice convenience.
+デフォルトでは、Forgeはプロジェクトに、Arquillianが最低限要求するバージョンである、Java 1.6を設定します。便利ですね。
 
-What we need to add now is the Java EE APIs. That's done using the @project add-dependency@ command below:
+次に追加する必要があるのは、Java EE APIです。以下の @project add-dependency@ コマンドでできます：
 
 bc(command). $ project add-dependency org.jboss.spec:jboss-javaee-6.0:1.0.0.Final:pom:provided
 
-You'll also need to add JUnit 4.8, the minimum required version of JUnit to use Arquillian, as a test-scoped dependency:
+また、Arquillianが最低限要求するバージョンである、JUnit 4.8をテストスコープの依存性として追加する必要があります：
 
 bc(command). $ project add-dependency junit:junit:4.8.1:test
 
-The result of the pom.xml that Forge generates is shown below:
+Forgeが生成したpom.xmlを以下に示します：
 
 div(filename). pom.xml
 
@@ -266,53 +266,53 @@ bc(prettify).. <?xml version="1.0" encoding="UTF-8"?>
     </build>
 </project>
 
-p(info). %Arquillian is now distributed in the Maven Central repository, so the JBoss Public repository declaration in the pom.xml is unecessary and can be removed. Keep in mind, though, you may need it to retrieve other JBoss software not available in Maven Central.%
+p(info). %Arquillianは、Mavenセントラルリポジトリで配布されていて、そのためpom.xmlのJBossパブリックリポジトリの記述は不要で、削除できます。しかしMavenセントラルでは入手できない他のJBossソフトウェアを取得するために必要になるかもしれないことは、覚えておいてください。%
 
-p(warning). %If you follow the camp that consider repositories explicitly defined in your project's pom.xml to be an antipattern, then read "these instructions":http://community.jboss.org/wiki/MavenGettingStarted-Users to enable the repository globally in your settings.xml file.%
+p(warning). %もし、プロジェクトのpom.xmlにリポジトリを明記するのはアンチパターンだと考えるなら、settings.xmlでリポジトリをユーザーグローバルに友好にするために "この説明":http://community.jboss.org/wiki/MavenGettingStarted-Users を読んでください。%
 
-p. The foundation of your project is now ready! Let's now open the project in Eclipse so we can start writing some code!
+p. プロジェクトの基本は準備できました！Eclipseでプロジェクトを開きましょう。コードを書きはじめます！
 
-h3. Open the Project in Eclipse
+h3. プロジェクトをEclipseで開く
 
-When developing a Java project, you'll likely use an IDE, such as Eclipse. That's why Arquillian has been designed to be IDE friendly, meaning you can run Arquillian tests from the IDE without making unconventional changes. So let's start taking advantage of the IDE immediately.
+Javaプロジェクトで開発するときは、EclipseのようなIDEを使うでしょう。だから、Arquillianは、IDEフレンドリーに設計されています。つまり、型破りな変更をしなくてもArquillianテストをIDEから実行できます。IDEの利点をすぐに活用しましょう。
 
-Begin by launching Eclipse. Now, since this is a Maven project, you need the "Maven Integration for Eclipse":m2e_home (m2e) plugin installed to open the project. If you don't already have the integration installed, the simplest way to get it is to install "JBoss Tools":tools_home. Follow these steps to install it from the Eclipse Marketplace (sort of like the app store for Eclipse).
+Eclipseの起動から始めます。これはMavenプロジェクトなので、プロジェクトを開くには  "Maven Integration for Eclipse":m2e_home (m2e)のインストールが必要です。もしまだインストールしていなければ、簡単な方法は、 "JBoss Tools":tools_home をインストールすることです。次のステップに従ってEclipseマーケットプレイス（Eclipseのアプリケーションストアのようなもの）からインストールしてください。
 
-# Select @Help > Eclipse Marketplace...@ from the main menu
-# Type "jboss tools" in the Find input field (no quotes) and press Enter
-# Click the Install button next to JBoss Tools (Indigo)
-# Complete the install wizard, then restart Eclipse if prompted
+# メインメニューから、 @Help > Eclipse Marketplace...@ を選択
+#  検索フィールドに"jboss tools"と入力し（引用符を除く）、Enterを押す
+# JBoss Tools (Indigo)のインストールボタンをクリック
+# インストールウィザードを完了して、再起動のプロンプトが表示されたら再起動する
 
-JBoss Tools provides a nice environment for developing Java EE applications, including excellent CDI support. Don't worry, it's not a heavyweight plugin.
+JBoss Tools はJava EEアプリケーション開発の快適な環境を提供します。心配しないで、これはそんなに重いプラグインではありません。
 
-However, if you just want the Maven integration without the extras that JBoss Tools brings, you can follow these steps instead:
+しかし、余分なJBoss ToolsなしでMavenの統合を死体場合は、下のステップに従ってください：
 
-# Select @Help > Eclipse Marketplace...@ from the main menu
-# Type "maven" in the Find input field (no quotes) and press Enter
-# Click the Install button next to Maven Integration for Eclipse
-# Complete the install wizard, then restart Eclipse if prompted
-# Repeat the steps to install the Maven Integration for Eclipse WTP
+# メインメニューから、 @Help > Eclipse Marketplace...@ を選択
+#  検索フィールドに"maven"と入力し（引用符を除く）、Enterを押す
+# Maven Integration for Eclipseのインストールボタンをクリック
+# インストールウィザードを完了して、再起動のプロンプトが表示されたら再起動する
+# Maven Integration for Eclipse WTPについてステップを繰り返す
 
-Once you have the Maven Integration plugin installed, follow these steps to open the project:
+Maven Integrationプラグインをインストールしたら、以下のステップでプロジェクトを開きます：
 
-# Select @File > Import...@ from the main menu
-# Type "existing maven" in the input source field
-# Select the option Existing Maven Projects, then click the Next button
-# Click the Browse... button
-# Navigate the project folder on your filesystem, then click the OK button
-# Click the Finish button to open the project
+# メインメニューから、 @File > Import...@ を選択
+# input sourceフィールドで"existing maven"と入力する
+# Existing Maven Projectsオプションを選択し、Nextボタンをクリックする
+# Browse...ボタンをクリックする
+# ファイルシステムでプロジェクトフォルダへ移動し、OKボタンをクリックする
+# Finishボタンをクリックして、プロジェクトを開く
 
-Eclipse will recognize the Maven project and open it in the Project Navigator view. If you expand the project, it should look similar to this image:
+EclipseはMavenプロジェクトを認識し、プロジェクトナビゲータビューで開きます。プロジェクトを展開したら、次の画像と同様に見えるでしょう：
 
 !/images/guides/arquillian_tutorial_eclipse_project.png!
 
-Now we can really get down to business!
+これで、ついに本題にたどり着きました！
 
-h3. Create a Component
+h3. コンポーネントを作る
 
-In order to write an Arquillian test, we need to have a component for it to test. Let's begin by creating a basic component so that you can learn how to execute an Arquillian test without other distractions. We'll gradually move to more complex scenarios.
+Arquillianテストを書くために、テスト対象のコードが必要です。余計なものがないところでArquillianテストをどのように実行するか学ぶために、ビジネスコンポーネントの作成から始めましょう。だんだん複雑なシナリオに進みます。
 
-In your IDE, create a new Java class named @Greeter@ in the @org.arquillian.example@ package. Replace the contents of the file with this greeter logic:
+IDEで、新しくJavaの @Greeter@ クラスを @org.arquillian.example@ パッケージに作成してください。内容を以下のように挨拶するロジックで置き換えてください：
 
 div(filename). src/main/java/org/arquillian/example/Greeter.java
 
@@ -333,13 +333,13 @@ public class Greeter {
     }
 }
 
-p. We want to verify that this class behaves properly when invoked as a CDI(Contexts and Dependency Injection) bean. Of course, we could simply write a unit test. But let's pretend that the bean uses enterprise services such as dependency injection and messaging and must be used inside a container. (Besides, that way we give it room to grow ~;))
+p. このクラスがCDI(Contexts and Dependency Injection) beanとして注入された際に、正しく振る舞うことを検証したいと考えています。もちろん、簡単にユニットテストを書くこともできます。しかしこのbeanは依存性注入やメッセージングのようなエンタープライズサービスを使用していて、コンテナ内で使用されなければならないということにしましょう（加えて、それに成長の機会を与えます ~;) ）。
 
-To use the class as a CDI bean, we'll be injecting it into the test using the @@Inject@ annotation. That calls for an Arquillian test! That means it's time to add the Arquillian API to the project!
+このクラスをCDI beanとして使うために、@@Inject@ アノテーションでテストに注入します。これはArquillianテストを必要とします！つまり、Arquillian APIをプロジェクトに追加する時です！
 
-h3. Add the Arquillian APIs
+h3. Arquillian APIを追加する
 
-Once again open up the @pom.xml@ file, located in the root folder of the project, in your editor. We need to instruct Maven which versions of the artifacts to use. Insert the following XML fragment directly above the @<build>@ element to import the BOM(Bill of Materials), or version matrix, for Arquillian's transitive dependencies.
+もう一度、プロジェクト直下にある @pom.xml@ をエディタで開きます。Mavenにどのバージョンのアーティファクトを使うかを示します。Arquillianの推移的な依存性のためのBOM(Bill of Materials)またはバージョンマトリックスをインポートするため、以下のXMLフラグメントを、 @<build>@ 要素の上に追加してください。
 
 div(filename). pom.xml
 
@@ -357,7 +357,7 @@ bc(prettify).. <!-- clip -->
 </dependencyManagement>
 <!-- clip -->
 
-p. Next, append the following XML fragment directly under the last @<dependency>@ element to add the Arquillian JUnit integration:
+p. 次に、Arquillian-JUnitインテグレーションを加えるために、次のXMLフラグメントを最後の @<dependency>@ 要素の下に追加してください：
 
 div(filename). pom.xml
 
@@ -369,19 +369,19 @@ bc(prettify).. <!-- clip -->
 </dependency>
 <!-- clip -->
 
-p. The Arquillian JUnit integration artifact also adds the Arquillian and ShrinkWrap APIs to the test classpath. You need all of these libraries to write and compile a JUnit Arquillian test.
+p. Arquillian-JUnitインテグレーションアーティファクトは、また、ShrinkWrap APIをテストクラスパスに追加します。これらの全ライブラリは、JUnit Arquillianテストを書き、コンパイルする際に必要です。
 
-p(info). %To use TestNG instead of JUnit, substitute the Arquillian JUnit integration with the Arquillian TestNG integration.%
+p(info). %JUnitの代わりにTestNGを使うためには、Arquillian JUnitインテグレーションをArquillian TestNGインテグレーションで置き換えてください。%
 
-p. If you're having trouble with the pom.xml up to this point, you can download the file from "this gist":https://gist.github.com/1263892.
+p. ここまでで、pom.xmlになにか問題があれば、 "このgist":https://gist.github.com/1263892 からダウンロードできます。
 
-*You're all set to write your first Arquillian test!*
+*最初のArquillianテストを書く準備ができました！*
 
-h3. Write an Arquillian Test
+h3. Arquillianテストを書く
 
-An Arquillian test looks just like a unit test, just with some extra flair. Let's return to the IDE.
+Arquillianテストは、すこし余分な部分のある、単なるユニットテストのように見えます。IDEに戻りましょう。
 
-p(warning). %If you get the message "Project configuration is out of date with pom.xml" then right click and select Project > Maven > Update Project Configuration to resync the project.%
+p(warning). %もし"Project configuration is out of date with pom.xml"というメッセージが表示されたら、プロジェクトを再同期するために右クリックしてProject > Maven > Update Project Configurationを選択してください.%
 
 Begin by creating a new JUnit test case in src/test/java under the @org.arquillian.example@ package and name it @GreeterTest@. You won't need the typical setup and teardown methods since Arquillian is doing most of the heavy lifting. Here's what we have so far:
 
