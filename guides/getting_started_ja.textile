@@ -32,7 +32,7 @@ h3. 前提
 
 Arquillianを始める最も簡単なやり方は、依存性の管理をしているプロジェクトのテストスイートに組み込むことです。今日、このカテゴリで最も広く利用されているビルドツールは、 "Apache Maven":maven_home です。このガイドでは、サンプルのMavenプロジェクトを使って、最初の *(greenbar)グリーンバー* へ案内します。
 
-p(info). %ArquillianはMavenには、もっと言えばどんな特定のビルドツールにも依存しません。それはAntやGradleでビルドするプロジェクトで使っても --より優れているとは言わないまでも-- 同じように機能します。理想的には、ビルドツールは、 "Maven Central repository":maven_search で配布されているArquillianライブラリをプロジェクトに追加するタスクを単純化できる、依存性管理を提供している物がいいでしょう。%
+p(info). %ArquillianはMavenには、もっと言えばどんな特定のビルドツールにも依存しません。それはAntやGradleでビルドするプロジェクトで使っても--より優れているとは言わないまでも--同じように機能します。理想的には、ビルドツールは、 "Maven Central repository":maven_search で配布されているArquillianライブラリをプロジェクトに追加するタスクを単純化できる、依存性管理を提供している物がいいでしょう。%
 
 このガイドは、読者がコマンドシェルとIDE(Integrated Development Environment:統合開発環境)からMavenを利用できると仮定しています。もしそうでなければ、 "Mavenをインストールしてください":maven_download 。 また、 "JDK(Java Development Kit) 1.6":jdk_download 以降のインストールが必要です。
 
@@ -150,7 +150,7 @@ bc(prettify).. <!-- clip -->
 
 p(important). %Java EE APIアーティファクトを、 @javax:javaee-api@ と組み合わせて *使わない* ことを強くおすすめします。このバンドルは、メソッドの実装を省いたクラスが含まれているので、実行時に（テストの実行時でも）これがクラスパスに残っていた場合、アプリケーションは奇妙なAbsent Codeエラーを投げます。もっと背景を知りたい場合は、 "このFAQを読んでください":http://community.jboss.org/wiki/WhatsTheCauseOfThisExceptionJavalangClassFormatErrorAbsentCode 。%
 
-p. プロジェクトの基本は準備できました！"プロジェクトをEclipseで開く":#open_project_in_eclipse に進んでください。コードを書きはじめます！
+p. プロジェクトの基本は準備できました！ "プロジェクトをEclipseで開く":#open_project_in_eclipse に進んでください。コードを書きはじめます！
 
 h4(#create_project_using_forge). Forgeでプロジェクトを生成する
 
@@ -335,7 +335,7 @@ public class Greeter {
 
 p. このクラスがCDI(Contexts and Dependency Injection) beanとして注入された際に、正しく振る舞うことを検証したいと考えています。もちろん、簡単にユニットテストを書くこともできます。しかしこのbeanは依存性注入やメッセージングのようなエンタープライズサービスを使用していて、コンテナ内で使用されなければならないということにしましょう（加えて、それに成長の機会を与えます ~;) ）。
 
-このクラスをCDI beanとして使うために、@@Inject@ アノテーションでテストに注入します。これはArquillianテストを必要とします！つまり、Arquillian APIをプロジェクトに追加する時です！
+このクラスをCDI beanとして使うために、 @@Inject@ アノテーションでテストに注入します。これはArquillianテストを必要とします！つまり、Arquillian APIをプロジェクトに追加する時です！
 
 h3. Arquillian APIを追加する
 
@@ -505,9 +505,9 @@ h3. コンテナアダプタを追加する
 
 Arquillianは、テストクラスパスで利用可能なコンテナの中からターゲットコンテナを選択します。だから、プロジェクトにもっとライブラリを追加します。
 
-Arquillianのテストは、テストで使用するプログラミングモデルと互換性があるならば（コンテナ用のArquillianアダプタがあるならば）どんなコンテナでも実行できます。私達のテストは、CDIプログラミングモデルを使用しているので、CDIをサポートするコンテナを使う必要があります。開発中の高速なターンアラウンドが希望なので、Weld EEエンベデッドコンテナから始めましょう。
+Arquillianのテストは、テストで使用するプログラミングモデルと互換性があるならば（コンテナ用のArquillianアダプタがあるならば）どんなコンテナでも実行できます。私達のテストは、CDIプログラミングモデルを使用しているので、CDIをサポートするコンテナを使う必要があります。開発中は高速にターンアラウンドしたいので、Weld EEエンベデッドコンテナから始めましょう。
 
-また、 @pom.xml@ を開き、他の @<dependency>@ 要素の下に、 以下の依存性のグループを追加してください：
+また @pom.xml@ を開き、他の @<dependency>@ 要素の下に、 以下の依存性のグループを追加してください：
 
 div(filename). pom.xml
 
@@ -573,7 +573,7 @@ Running org.arquillian.example.GreeterTest
 Hello, Earthling!
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.858 sec
 
-*おめでとう！* Arquillianを使って、最初の*(greenbar)グリーンバー* に到達しました！
+*おめでとう！* Arquillianを使って、最初の *(greenbar)グリーンバー* に到達しました！
 
 h3. 詳しく見る
 
@@ -631,7 +631,7 @@ public class Greeter {
     }
 }
 
-p. さて、テスト実行のために、 @PhraseBuilder@ のインスタンスが作成され、 その @@PostConstruct@ メソッドが実行され、 @Greeter@　のインスタンスが作成されるときに @Greeter@　のコンストラクタに注入されなければなりません。これらがすべてが起きれば、CDIが動作していることを確認できます。
+p. さて、テスト実行のために、 @PhraseBuilder@ のインスタンスが作成され、 その @@PostConstruct@ メソッドが実行され、 @Greeter@ のインスタンスが作成されるときに @Greeter@ のコンストラクタに注入されなければなりません。これらがすべてが起きれば、CDIが動作していることを確認できます。
 
 p. 最後のステップです。新しいクラスを作ったので、テスト時に @@Deployment@ メソッド が返すアーカイブにそれを加える必要があります。簡単に、以下の行を変更してください：
 
